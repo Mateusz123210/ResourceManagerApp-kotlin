@@ -33,7 +33,7 @@ class UserEntity {
     var creationTime: LocalDateTime = LocalDateTime.now();
 
     @Column(nullable = false)
-    var modificationTime: LocalDateTime? = creationTime;
+    var modificationTime: LocalDateTime = creationTime;
 
     @Enumerated(EnumType.ORDINAL)
     var type: UserType = UserType.DEFAULT;

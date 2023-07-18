@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class ResourceManagerApplication
 
 fun main(args: Array<String>) {
-	runApplication<ResourceManagerApplication>(*args)
+    runApplication<ResourceManagerApplication>(*args)
 }

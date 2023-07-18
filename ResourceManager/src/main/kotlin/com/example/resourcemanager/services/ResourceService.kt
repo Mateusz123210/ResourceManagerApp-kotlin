@@ -12,10 +12,7 @@ import org.springframework.stereotype.Service
 
 @RequiredArgsConstructor
 @Service
-class ResourceService {
-
-    private val resourceRepository: ResourceRepository? = null;
-    private val userRepository: UserRepository? = null;
+class ResourceService(val resourceRepository: ResourceRepository, val userRepository: UserRepository) {
 
     @Transactional
     fun addResource(addResourceDTO: AddResourceDTO): ResponseEntity<String>{

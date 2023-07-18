@@ -18,23 +18,23 @@ class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private var id: Int? = null;
+    var id: Int = 0;
 
     @Column(nullable = false)
-    private var nick: String? = null;
+    var nick: String? = null;
 
     @Column(nullable = false)
-    private var name: String? = null;
+    var name: String? = null;
 
     @Column(nullable = false)
-    private var surname: String? = null;
+    var surname: String? = null;
 
     @Column(nullable = false)
-    private var creationTime: LocalDateTime? = null;
+    var creationTime: LocalDateTime? = null;
 
     @Column(nullable = false)
-    private var modificationTime: LocalDateTime? = null;
+    var modificationTime: LocalDateTime? = null;
 
     @Enumerated(EnumType.ORDINAL)
-    private var type: UserType? = null;
+    var type: UserType? = null;
 }

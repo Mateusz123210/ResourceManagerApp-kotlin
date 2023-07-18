@@ -48,11 +48,5 @@ class ResourceApiParamsValidator {
                 throw ApplicationException("Metadata is not a valid json!");
             }
         }
-
-
-
-
-
-
     }
 }

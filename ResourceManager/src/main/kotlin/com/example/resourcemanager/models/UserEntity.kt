@@ -1,6 +1,5 @@
 package com.example.resourcemanager.models
 
-import com.example.resourcemanager.additionalTypes.ResourceType
 import com.example.resourcemanager.additionalTypes.UserType
 import jakarta.persistence.*
 import lombok.AllArgsConstructor

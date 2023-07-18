@@ -32,13 +32,8 @@ class ResourceService(val resourceRepository: ResourceRepository, val userReposi
             .orElseThrow{
                 ApplicationException("Resource was not added. User with this id does not exist!")};
         val currentDateTime: LocalDateTime = LocalDateTime.now();
-        val resourceEntity: ResourceEntity = ResourceEntity();
-        resourceEntity.name = addResourceDTO.name
-        resourceEntity.userId = user
-        resourceEntity.type = addResourceDTO.type
-        resourceEntity.metadata = addResourceDTO.metadata
-        resourceEntity.creationTime = currentDateTime
-        resourceEntity.modificationTime = currentDateTime
+        val resourceEntity: ResourceEntity = ResourceEntity(addResourceDTO.name, currentDateTime, currentDateTime,
+            user, addResourceDTO.type, addResourceDTO.metadata);
         resourceRepository.save(resourceEntity);
         return ResponseEntity.ok("Resource was added!");
     }

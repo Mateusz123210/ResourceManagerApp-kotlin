@@ -1,5 +1,6 @@
 package com.example.resourcemanager.models
 
+import com.example.resourcemanager.additionalTypes.ResourceType
 import com.example.resourcemanager.additionalTypes.UserType
 import jakarta.persistence.*
 import lombok.AllArgsConstructor
@@ -37,4 +38,16 @@ class UserEntity {
 
     @Enumerated(EnumType.ORDINAL)
     var type: UserType = UserType.DEFAULT;
+
+    constructor(nick: String, name: String, surname: String,
+                creationTime: LocalDateTime, modificationTime: LocalDateTime, type: UserType){
+        this.nick = nick;
+        this.name = name;
+        this.surname = surname;
+        this.creationTime = creationTime;
+        this.modificationTime = modificationTime;
+        this.type = type;
+    }
+
+    constructor();
 }

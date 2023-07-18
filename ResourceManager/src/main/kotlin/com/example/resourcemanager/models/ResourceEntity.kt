@@ -14,7 +14,7 @@ import java.time.LocalDateTime
 @AllArgsConstructor
 @Entity
 @Table(name = "resources")
-class ResourceEntity {
+class ResourceEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,4 +38,16 @@ class ResourceEntity {
 
     @Column(nullable = false)
     var metadata: String = "";
+
+    constructor(name: String, creationTime: LocalDateTime, modificationTime: LocalDateTime,
+        userId: UserEntity, type: ResourceType, metadata: String){
+        this.name = name;
+        this.creationTime = creationTime;
+        this.modificationTime = modificationTime;
+        this.userId = userId;
+        this.type = type;
+        this.metadata = metadata;
+    }
+
+    constructor();
 }

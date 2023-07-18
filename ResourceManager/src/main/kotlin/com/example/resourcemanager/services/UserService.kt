@@ -25,14 +25,9 @@ class UserService(val userRepository: UserRepository, val resourceRepository: Re
         val surname: String = addUserDTO.surname;
         val type: UserType = addUserDTO.type;
         UserApiParamsValidator.validateAddUserParameters(nick, name, surname, type);
-        val userEntity = UserEntity();
-        userEntity.nick = nick;
-        userEntity.name = name;
-        userEntity.surname = surname;
-        userEntity.type = type;
         val currentDateTime: LocalDateTime = LocalDateTime.now();
-        userEntity.modificationTime = currentDateTime;
-        userEntity.creationTime = currentDateTime;
+        val userEntity = UserEntity(nick, name, surname,
+            currentDateTime, currentDateTime, type);
         userRepository.save(userEntity);
         return ResponseEntity.ok("User was added!");
     }
@@ -42,8 +37,7 @@ class UserService(val userRepository: UserRepository, val resourceRepository: Re
         UserApiParamsValidator.validateUserId(authorizedUserId);
         UserApiParamsValidator.validateUserId(id);
         val authorizedUser: UserEntity = userRepository.findById(authorizedUserId).
-        orElseThrow{ApplicationException(
-        "User was not deleted, because authorized user does not exist!")};
+        orElseThrow{ApplicationException("User was not deleted, because authorized user does not exist!")};
         if(authorizedUser.type == UserType.DEFAULT){
             throw ApplicationException("User is not permitted to delete users!");
         }

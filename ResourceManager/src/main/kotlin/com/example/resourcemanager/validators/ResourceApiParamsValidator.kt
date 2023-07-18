@@ -41,7 +41,7 @@ class ResourceApiParamsValidator {
             validateMetadata(metadata);
         }
 
-        fun validateMetadata(metadata: String){
+        private fun validateMetadata(metadata: String){
             try{
                 JSONObject(metadata);
             }catch(e: JSONException) {

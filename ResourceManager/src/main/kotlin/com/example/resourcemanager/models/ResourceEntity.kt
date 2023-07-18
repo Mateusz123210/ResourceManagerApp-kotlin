@@ -24,18 +24,18 @@ class ResourceEntity {
     var name: String = "";
 
     @Column(nullable = false)
-    var creationTime: LocalDateTime? = null;
+    var creationTime: LocalDateTime = LocalDateTime.now();
 
     @Column(nullable = false)
-    var modificationTime: LocalDateTime? = null;
+    var modificationTime: LocalDateTime = creationTime;
 
     @ManyToOne
     @JoinColumn(nullable = false)
-    var userId: UserEntity? = null;
+    var userId: UserEntity = UserEntity();
 
     @Enumerated(EnumType.ORDINAL)
-    var type: ResourceType? = null;
+    var type: ResourceType = ResourceType.RESEARCH;
 
     @Column(nullable = false)
-    var metadata: String? = null;
+    var metadata: String = "";
 }

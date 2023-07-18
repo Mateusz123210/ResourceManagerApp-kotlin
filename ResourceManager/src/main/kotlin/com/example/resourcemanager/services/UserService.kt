@@ -13,6 +13,7 @@ import jakarta.transaction.Transactional
 import lombok.RequiredArgsConstructor
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
+import java.time.LocalDateTime
 
 @RequiredArgsConstructor
 @Service
@@ -23,13 +24,17 @@ class UserService(val userRepository: UserRepository, val resourceRepository: Re
         val name: String = addUserDTO.name;
         val surname: String = addUserDTO.surname;
         val type: UserType = addUserDTO.type;
-//        var userEntity: UserEntity = UserEntity()
-//        userEntity
-
-
-
-
-        return ResponseEntity.status(200).body("") //to delete
+        UserApiParamsValidator.validateAddUserParameters(nick, name, surname, type);
+        val userEntity = UserEntity();
+        userEntity.nick = nick;
+        userEntity.name = name;
+        userEntity.surname = surname;
+        userEntity.type = type;
+        val currentDateTime: LocalDateTime = LocalDateTime.now();
+        userEntity.modificationTime = currentDateTime;
+        userEntity.creationTime = currentDateTime;
+        userRepository.save(userEntity);
+        return ResponseEntity.ok("User was added!");
     }
 
     @Transactional
@@ -55,12 +60,12 @@ class UserService(val userRepository: UserRepository, val resourceRepository: Re
     @Transactional
     fun updateUserNick(updateUserNickDTO: UpdateUserNickDTO): ResponseEntity<String>{
         UserApiParamsValidator.checkUpdateUserNickParameters(updateUserNickDTO.id, updateUserNickDTO.newNick);
-//        UserEntity user = userRepository.findById(updateUserNickDTO.getId()).orElseThrow(() ->
-//        new ApplicationException("Nick was not changed. User with this id does not exist!"));
-//        LocalDateTime currentDateTime = LocalDateTime.now();
-//        user.setNick(updateUserNickDTO.getNewNick());
-//        user.setModificationTime(currentDateTime);
-//        userRepository.save(user);
+        val user: UserEntity = userRepository.findById(updateUserNickDTO.id)
+            .orElseThrow{ApplicationException("Nick was not changed. User with this id does not exist!")};
+        val currentDateTime: LocalDateTime = LocalDateTime.now();
+        user.nick = updateUserNickDTO.newNick;
+        user.modificationTime = currentDateTime;
+        userRepository.save(user);
         return ResponseEntity.ok("User nick was changed!");
     }
 }

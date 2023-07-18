@@ -21,20 +21,20 @@ class UserEntity {
     var id: Int = 0;
 
     @Column(nullable = false)
-    var nick: String? = null;
+    var nick: String = "";
 
     @Column(nullable = false)
-    var name: String? = null;
+    var name: String = "";
 
     @Column(nullable = false)
-    var surname: String? = null;
+    var surname: String = "";
 
     @Column(nullable = false)
-    var creationTime: LocalDateTime? = null;
+    var creationTime: LocalDateTime = LocalDateTime.now();
 
     @Column(nullable = false)
-    var modificationTime: LocalDateTime? = null;
+    var modificationTime: LocalDateTime? = creationTime;
 
     @Enumerated(EnumType.ORDINAL)
-    var type: UserType? = null;
+    var type: UserType = UserType.DEFAULT;
 }

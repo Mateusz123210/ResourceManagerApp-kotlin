@@ -9,3 +9,4 @@ class ResourceManagerApplication
 fun main(args: Array<String>) {
     runApplication<ResourceManagerApplication>(*args)
 }
+

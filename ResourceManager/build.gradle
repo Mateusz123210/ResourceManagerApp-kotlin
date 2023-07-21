@@ -6,6 +6,7 @@ plugins {
     id 'org.graalvm.buildtools.native' version '0.9.23'
     id 'org.jetbrains.kotlin.jvm' version '1.8.22'
     id 'org.jetbrains.kotlin.plugin.spring' version '1.8.22'
+    id 'org.liquibase.gradle' version '2.2.0'
 }
 
 group = 'com.example'
@@ -26,13 +27,12 @@ repositories {
 }
 
 dependencies {
-    // https://mvnrepository.com/artifact/org.json/json
     implementation group: 'org.json', name: 'json', version: '20230618'
-
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'com.fasterxml.jackson.module:jackson-module-kotlin'
     implementation 'org.jetbrains.kotlin:kotlin-reflect'
+    implementation 'org.liquibase:liquibase-core'
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'org.postgresql:postgresql'

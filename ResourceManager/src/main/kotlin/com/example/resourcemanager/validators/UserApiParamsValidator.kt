@@ -27,6 +27,13 @@ class UserApiParamsValidator {
             }
         }
 
+        fun validateUserId(id: Int, authorizedUserId: Int){
+            validateUserId(id);
+            if(id <= 0) {
+                throw InvalidArgumentException("Given authorized user id is invalid!")
+            }
+        }
+
         fun checkUpdateUserNickParameters(id: Int, nick: String){
             if(id <= 0 ) {
                 throw InvalidArgumentException("Given user id is invalid!");

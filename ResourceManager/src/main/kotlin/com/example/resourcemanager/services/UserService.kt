@@ -40,8 +40,7 @@ class UserService(val userRepository: UserRepository, val resourceRepository: Re
 
     @Transactional
     fun deleteUser(id: Int, authorizedUserId: Int): ResponseEntity<String>{
-        UserApiParamsValidator.validateUserId(authorizedUserId);
-        UserApiParamsValidator.validateUserId(id);
+        UserApiParamsValidator.validateUserId(id, authorizedUserId);
 
         val authorizedUser: UserEntity = userRepository.findById(authorizedUserId).
             orElseThrow{AuthorizedUserNotFoundException("User was not deleted, because authorized user does not exist!")};
